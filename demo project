@@ -1,1 +1,30 @@
+from tkinter import messagebox, simpledialog, Tk
+
+def swap_letters(message):
+    if len(message) % 2 != 0:
+        message += 'x'
+    even_letters = message[0::2]
+    odd_letters = message[1::2]
+    new_message = ''
+    for i in range(len(even_letters)):
+        new_message += odd_letters[i] + even_letters[i]
+    return new_message  
+
+def get_task():
+    return simpledialog.askstring("Task", "Do you want to encrypt or decrypt?")
+
+def get_message():
+    return simpledialog.askstring("Message", "Enter the message:")
+
+top = Tk()
+top.withdraw()
+
+while True:
+    task = get_task()
+    if task == 'encrypt'or task=='decrypt':
+        message = get_message()
+        result = swap_letters(message)
+        messagebox.showinfo('Result', result)
+
+top.mainloop()
 
